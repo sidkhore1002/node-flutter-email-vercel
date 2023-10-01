@@ -18,16 +18,16 @@ app.post('/sendemail', function(req, res){
     console.log(req.body.emailId)    
     sendEmail(req.body.emailId)
     res.send("Email sent...")
-    res.end()
 });
 
-function sendEmail(emailId){
+function sendEmail(emailId) async{
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
         }
+        secure: true,
     });
     var mailOptions = {
         from : 'findoutmobile@gmail.com',
@@ -35,7 +35,7 @@ function sendEmail(emailId){
         subject: 'Flutter-Nodejs test email',
         text: 'Flutter-Nodejs test email'
     }
-    transpoter.sendMail(mailOptions, function(error, info){
+    await transpoter.sendMail(mailOptions, function(error, info){
         if(error){
             console.log(error);
         }
