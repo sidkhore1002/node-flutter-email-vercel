@@ -18,15 +18,12 @@ app.post('/sendemail', async function(req, res){
     console.log(req.body.emailId)    
     await sendEmail(req.body.emailId)	
     res.send("Email sent...")
-    res.end()
+    // res.end()
 });
 
 async function sendEmail(emailId){
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
-        host: 'smtp.ethereal.email',
-	port: 587,
-	secure: false,
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
