@@ -17,7 +17,7 @@ app.get('/', function(req,res){
 app.post('/sendemail', async function(req, res){
     console.log(req.body.emailId)    
     sendEmail(req.body.emailId)	
-    // res.send("Email sent...")
+    res.send("Email sent...")
     // res.end()
 });
 
