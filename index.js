@@ -14,17 +14,17 @@ app.get('/', function(req,res){
     res.end()
 })
 
-app.post('/sendemail', async function(req, res){
+app.post('/sendemail', function(req, res){
     console.log(req.body.emailId)    
-    // sendEmail(req.body.emailId)	
+    // sendEmail(req.body.emailId)
     sendEmail(req.body.emailId).then((data)=>{
         res.send("Email sent...")
         res.end()    
     })
+
 });
 
-async function sendEmail(emailId){
-    console.log("Inside sendmail" + emailId);
+function sendEmail(emailId){
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -38,15 +38,17 @@ async function sendEmail(emailId){
         subject: 'Flutter-Nodejs test email',
         text: 'Flutter-Nodejs test email'
     }
-    console.log("after mail options");
-    await transpoter.sendMail(mailOptions, function(error, info){
-        if(error){
-            console.log(error);
-        }
-        else{
-            console.log("Actual Email sent from nodemailer.. " + info.envelope);
-        }
+    return new Promise((resolve, reject) => {
+        transpoter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                reject(error);
+            }
+            else{
+                console.log("Email sent.. " + info.envelope);
+                resolve(info);
+            }
+        });
     });
 }
-
 
