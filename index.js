@@ -26,7 +26,7 @@ function sendEmail(emailId) async{
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
-        }
+        },
         secure: true,
     });
     var mailOptions = {
