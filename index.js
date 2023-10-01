@@ -16,7 +16,7 @@ app.get('/', function(req,res){
 
 app.post('/sendemail', function(req, res){
     console.log(req.body.emailId)    
-    sendEmail(req.body.emailId)
+    await sendEmail(req.body.emailId)	
     res.send("Email sent...")
     res.end()
 });
@@ -43,7 +43,7 @@ async function sendEmail(emailId){
             console.log(error);
         }
         else{
-            console.log("Email sent.. " + info.envelope);
+            console.log("Actual Email sent from nodemailer.. " + info.envelope);
         }
     });
 }
