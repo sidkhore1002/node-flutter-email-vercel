@@ -23,6 +23,8 @@ app.post('/sendemail', function(req, res){
 function sendEmail(emailId) async{
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
+        port: 465,
+        host: "smtp.gmail.com",
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
