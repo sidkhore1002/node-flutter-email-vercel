@@ -16,17 +16,17 @@ app.get('/', function(req,res){
 
 app.post('/sendemail', function(req, res){
     console.log(req.body.emailId)    
-    // sendEmail(req.body.emailId)
+    sendEmail(req.body.emailId)
     res.send("Email sent...")
     res.end()
 });
 
-function sendEmail(emailId){
+async function sendEmail(emailId){
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.ethereal.email',
-	    port: 587,
-	    secure: false,
+	port: 587,
+	secure: false,
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
@@ -38,7 +38,7 @@ function sendEmail(emailId){
         subject: 'Flutter-Nodejs test email',
         text: 'Flutter-Nodejs test email'
     }
-    transpoter.sendMail(mailOptions, function(error, info){
+    await transpoter.sendMail(mailOptions, function(error, info){
         if(error){
             console.log(error);
         }
