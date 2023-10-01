@@ -17,11 +17,12 @@ app.get('/', function(req,res){
 app.post('/sendemail', async function(req, res){
     console.log(req.body.emailId)    
     await sendEmail(req.body.emailId)	
-    res.send("Email sent...")
+    // res.send("Email sent...")
     // res.end()
 });
 
 async function sendEmail(emailId){
+    console.log("Inside sendmail" + emailId);
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -35,6 +36,7 @@ async function sendEmail(emailId){
         subject: 'Flutter-Nodejs test email',
         text: 'Flutter-Nodejs test email'
     }
+    console.log("after mail options");
     await transpoter.sendMail(mailOptions, function(error, info){
         if(error){
             console.log(error);
