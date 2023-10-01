@@ -16,11 +16,10 @@ app.get('/', function(req,res){
 
 app.post('/sendemail', function(req, res){
     console.log(req.body.emailId)    
-    // sendEmail(req.body.emailId)
     res.send("Email sent...")
 });
 
-function sendEmail(emailId) async{
+function sendEmail(emailId){
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
         port: 465,
