@@ -24,6 +24,9 @@ app.post('/sendemail', function(req, res){
 function sendEmail(emailId){
     var transpoter = nodemailer.createTransport({
         service: 'gmail',
+        host: 'smtp.ethereal.email',
+	    port: 587,
+	    secure: false,
         auth: {
             user: 'findoutmobile@gmail.com',
             pass: 'eiorarwtsqtyxaee'        
